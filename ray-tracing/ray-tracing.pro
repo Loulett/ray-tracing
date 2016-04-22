@@ -12,13 +12,13 @@ TEMPLATE = app
 
 #QMAKE_CXX = "C:\Program Files\LLVM\bin\clang++.exe"
 #QMAKE_CXXFLAGS = $$replace(QMAKE_CXXFLAGS, "-fno-keep-inline-dllexport", "")
-#QMAKE_CXXFLAGS += -std=gnu++1z -Wno-missing-prototypes -Wno-global-constructors \
-#    -Wno-c++98-compat -Wno-c++98-compat-pedantic -Wno-dollar-in-identifier-extension \
-#    -Weverything -Reverything
+QMAKE_CXXFLAGS += -std=gnu++1z -Wno-missing-prototypes -Wno-global-constructors \
+    -Wno-c++98-compat -Wno-c++98-compat-pedantic -Wno-dollar-in-identifier-extension \
+    -Weverything -Reverything
 
 
 #QMAKE_CXXFLAGS += --version
-QMAKE_CXXFLAGS += -std=gnu++14 -Wall -Wextra -Weffc++
+#QMAKE_CXXFLAGS += -std=gnu++14 -Wall -Wextra -Weffc++
 
 SOURCES += main.cpp\
     monitor.cpp \
@@ -36,7 +36,7 @@ HEADERS  += \
     scene.h \
     widget.h
 
-FORMS    += mainwindow.ui
+#FORMS    += mainwindow.ui
 
 DISTFILES += \
     input.txt

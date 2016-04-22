@@ -4,16 +4,16 @@
 #include "object.h"
 
 Point cross(Point a, Point b) {
-    return Point(a.GetY()*b.GetZ()-a.GetZ()*b.GetY(),
-                 a.GetZ()*b.GetX()-a.GetX()*b.GetZ(),
-                 a.GetX()*b.GetY()-a.GetY()*b.GetX());
+    return Point(a.GetY()*b.GetZ() - a.GetZ()*b.GetY(),
+                 a.GetZ()*b.GetX() - a.GetX()*b.GetZ(),
+                 a.GetX()*b.GetY() - a.GetY()*b.GetX());
 }
 
-int dot(Point a, Point b) {
-    return a.GetX()*b.GetX()+a.GetY()*b.GetY()+a.GetZ()*b.GetZ();
+double dot(Point a, Point b) {
+    return a.GetX()*b.GetX() + a.GetY()*b.GetY() + a.GetZ()*b.GetZ();
 }
 
-std::pair<bool, double> Sphere::Transection(Ray r) const {
+std::pair<bool, double> Sphere::Intersection(const Ray& r) const {
     double a = 0;
     Point normalized = r.GetStart() - centre;
     double b = dot(normalized, r.GetVector());

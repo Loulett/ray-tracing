@@ -16,9 +16,9 @@ public:
     //(работает, если точка лежит на луче, иначе падает!)
     double ParamOnRay(Point& p);
 
-    Point GetVector() {return vector;}
-    Point GetStart() {return start;}
-    Point GetOn() {return on;}
+    Point GetVector() const { return vector; }
+    Point GetStart() const { return start; }
+    Point GetOn() const { return on; }
 
     //double GetA() { return a; }
     //double GetB() { return b; }
