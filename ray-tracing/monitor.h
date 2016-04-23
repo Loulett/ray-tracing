@@ -11,7 +11,7 @@ public:
     Monitor(Point leftTop, Point rightTop, Point leftBottom, Point rightBottom,
             int height, int wight, Point camera): leftTop(leftTop), rightTop(rightTop),
             leftBottom(leftBottom), rightBottom(rightBottom), height(height), wight(wight),
-            camera(camera), colors(height, std::vector<int>(wight)) {}
+            camera(camera), colors(height, std::vector<int>(wight, 0)) {}
 
     //Возвращает луч через камеру и пиксель, имеющий данное место в матрице
     Ray GetRay(int h, int w);

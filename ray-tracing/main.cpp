@@ -16,7 +16,7 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    std::ifstream finp("input.txt");
+    std::ifstream finp("../ray-tracing/input.txt");
     double x = 0, y = 0, z = 0, r = 0;
     finp >> x >> y >> z;
     Point camera(x,y,z);
@@ -35,9 +35,9 @@ int main(int argc, char *argv[])
     finp >> x >> y >> z;
     Point centre(x,y,z);
     finp >> r >> color;
-    std::vector<Object> objects;
+    std::vector<Object*> objects;
     Sphere s(centre, r, color);
-    objects.push_back(s);
+    objects.push_back(&s);
     Scene scene(monitor, objects);
     scene.Color();
     MyWidget myWidget(&scene);

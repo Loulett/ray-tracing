@@ -18,6 +18,9 @@ public:
     Point operator * (double num) const {
         return Point(x*num, y*num, z*num);
     }
+    Point operator / (int num) const {
+        return Point(x/num, y/num, z/num);
+    }
 
     Point operator * (int num) const {
         return Point(x*num, y*num, z*num);

@@ -10,7 +10,7 @@
 class Scene
 {
 public:
-    Scene(Monitor monitor, const std::vector<Object> objects): monitor(monitor), objects(objects) {}
+    Scene(Monitor monitor, const std::vector<Object*> objects): monitor(monitor), objects(objects) {}
     // заполняет матрицу пикселей цветами
     void Color();
     int GetHeight() {return monitor.GetHeight();}
@@ -22,7 +22,7 @@ private:
     // камера и матрица пикселей
     Monitor monitor;
     // все объекты. TODO - замениь на KD дерево
-    std::vector<Object> objects;
+    std::vector<Object*> objects;
 };
 
 #endif // SCENE_H

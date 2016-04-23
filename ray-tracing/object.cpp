@@ -9,21 +9,22 @@ Point cross(Point a, Point b) {
                  a.GetX()*b.GetY()-a.GetY()*b.GetX());
 }
 
-int dot(Point a, Point b) {
+double dot(Point a, Point b) {
     return a.GetX()*b.GetX()+a.GetY()*b.GetY()+a.GetZ()*b.GetZ();
 }
 
-std::pair<bool, double> Sphere::Transection(Ray r) const {
-    double a = 0;
+std::pair<bool, double> Sphere::Transection(const Ray& r) const {
+    double a = dot(r.GetVector(), r.GetVector());
     Point normalized = r.GetStart() - centre;
-    double b = dot(normalized, r.GetVector());
-    double c = dot(normalized, normalized) - radius * radius;
-    double d = b*b - c;
+    double b = 2 * dot(normalized, r.GetVector());
+    double c = dot(r.GetStart(), r.GetStart()) + dot(centre,centre)
+               - radius * radius;
+    double d = b*b - 4 * a *c;
 
     if (d < 0)
         return std::make_pair(false, -1);
     d = std::sqrt(d);
-    double x1 = -b + d, x2 = -b - d;
+    double x1 = (-b + d)/(2*a), x2 = (-b - d)/(2*a);
     double x = std::min(x1,x2) >= 0 ? std::min(x1, x2) : std::max(x1,x2);
     if (x < 0)
         return std::make_pair(false, -1);

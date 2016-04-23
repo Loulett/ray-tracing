@@ -20,3 +20,10 @@ void MyWidget::paintEvent(QPaintEvent *) {
         }
     }
 }
+/*
+void MyWidget::paintEvent(QPaintEvent *) {
+    QPainter painter(this);
+    window = painter.window();
+    painter.setPen(QPen(Qt::black,20));
+    painter.drawPoint(1, 1);
+}*/
