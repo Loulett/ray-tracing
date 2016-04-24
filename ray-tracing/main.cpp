@@ -33,10 +33,14 @@ int main(int argc, char *argv[])
     Monitor monitor(leftTop, rightTop, leftBottom, rightBottom, h, w, camera);
     int color = 0;
     finp >> x >> y >> z;
-    Point centre(x, y, z);
-    finp >> r >> color;
+    Point first(x, y, z);
+    finp >> x >> y >> z;
+    Point second(x, y, z);
+    finp >> x >> y >> z;
+    Point third(x, y, z);
+    finp >> x >> y >> z;
     std::vector<Object*> objects;
-    Sphere s(centre, r, color);
+    Triangle s(first, second, third, x, y, z);
     objects.push_back(&s);
     Scene scene(monitor, objects);
     scene.Color();

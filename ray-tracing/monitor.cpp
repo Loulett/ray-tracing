@@ -8,6 +8,6 @@ Ray Monitor::GetRay(int h, int w) {
     return Ray(camera, x + y);
 }
 
-void Monitor::SetColor(int h, int w, int color) {
+void Monitor::SetColor(int h, int w, QColor color) {
     colors[h][w] = color;
 }

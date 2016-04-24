@@ -12,18 +12,8 @@ void MyWidget::paintEvent(QPaintEvent *) {
     painter.setWindow(0, 0, scene->GetWidth(), scene->GetHeight());
     for (int i = 0; i < scene->GetHeight(); i++) {
         for (int j = 0; j < scene->GetWidth(); j++) {
-            if (scene->GetColor(i, j) == 0)
-                painter.setPen(Qt::black);
-            else
-                painter.setPen(Qt::red);
+            painter.setPen(scene->GetColor(i,j));
             painter.drawPoint(i, j);
         }
     }
 }
-/*
-void MyWidget::paintEvent(QPaintEvent *) {
-    QPainter painter(this);
-    window = painter.window();
-    painter.setPen(QPen(Qt::black,20));
-    painter.drawPoint(1, 1);
-}*/

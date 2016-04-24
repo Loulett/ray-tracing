@@ -2,6 +2,7 @@
 #define OBJECT_H
 
 #include <utility>
+#include <QColor>
 
 #include "point.h"
 #include "ray.h"
@@ -16,18 +17,18 @@ public:
     virtual std::pair<bool, double> Intersection(const Ray& r) const = 0;
 
     //Получает цвет объекта а вы как думали
-    int GetColor() { return color; }
+    QColor GetColor() { return color; }
 
-    Object(int color): color(color) {}
+    Object(int r, int g, int b): color(r,g,b) {}
 
     Object(const Object& other) = default;
 protected:
-    int color;
+    QColor color;
 };
 
 class Sphere: public Object {
 public:
-    Sphere(Point centre, double radius, int color): Object(color), centre(centre), radius(radius) {}
+    Sphere(Point centre, double radius, int r, int g, int b): Object(r,g,b), centre(centre), radius(radius) {}
     Sphere(const Sphere& other) = default;
 
     std::pair<bool, double> Intersection(const Ray& r) const;
@@ -40,8 +41,8 @@ private:
 
 class Rectangle: public Object {
 public:
-    Rectangle(Point leftTop, Point rightTop, Point leftBottom, Point rightBottom, int color):
-           Object{color}, leftTop(leftTop), rightTop(rightTop),
+    Rectangle(Point leftTop, Point rightTop, Point leftBottom, Point rightBottom, int r, int g, int b):
+           Object(r,g,b), leftTop(leftTop), rightTop(rightTop),
            leftBottom(leftBottom), rightBottom(rightBottom) {}
 
     std::pair<bool, double> Intersection(const Ray& r) const;
@@ -52,8 +53,8 @@ private:
 
 class Triangle: public Object {
 public:
-    Triangle(Point first, Point second, Point third, int color):
-             Object{color}, first(first), second(second), third(third) {}
+    Triangle(Point first, Point second, Point third, int r, int g, int b):
+             Object(r,g,b), first(first), second(second), third(third) {}
 
     std::pair<bool, double> Intersection(const Ray& r) const;
 
