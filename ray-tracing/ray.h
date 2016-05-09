@@ -13,6 +13,8 @@ public:
     Point GetStart() const { return start; }
     Point GetOn() const { return on; }
 
+    Point GetT(double t) const { return start + vector * t; }
+
 private:
     //Начальная точка луча (камера), точка, лежащая на луче (пиксель)
     Point start, on;

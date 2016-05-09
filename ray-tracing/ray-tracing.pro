@@ -18,7 +18,7 @@ TEMPLATE = app
 
 
 #QMAKE_CXXFLAGS += --version
-QMAKE_CXXFLAGS += -std=gnu++14 #-Wall -Wextra -Weffc++
+QMAKE_CXXFLAGS += -std=gnu++14 -Wall -Wextra
 
 SOURCES += main.cpp monitor.cpp point.cpp object.cpp ray.cpp scene.cpp widget.cpp
 

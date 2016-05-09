@@ -5,6 +5,7 @@
 #include <QPainter>
 #include <fstream>
 #include <vector>
+#include <memory>
 
 #include "widget.h"
 #include "monitor.h"
@@ -31,18 +32,43 @@ int main(int argc, char *argv[])
     int h = 0, w = 0;
     finp >> h >> w;
     Monitor monitor(leftTop, rightTop, leftBottom, rightBottom, h, w, camera);
-    int color = 0;
     finp >> x >> y >> z;
-    Point first(x, y, z);
-    finp >> x >> y >> z;
-    Point second(x, y, z);
-    finp >> x >> y >> z;
-    Point third(x, y, z);
-    finp >> x >> y >> z;
-    std::vector<Object*> objects;
-    Triangle s(first, second, third, x, y, z);
-    objects.push_back(&s);
-    Scene scene(monitor, objects);
+    Point light(x,y,z);
+    Scene scene(monitor, light);
+    int n = 0;
+    char c;
+    finp >> n;
+    std::vector<std::unique_ptr<Object> > objects;
+    for (int i = 0; i < n; i++) {
+        finp >> c;
+        if (c == 's') {
+            finp >> x >> y >> z;
+            Point centre(x, y, z);
+            finp >> r;
+            finp >> x >> y >> z;
+            scene.AddSphere(centre, r, x, y, z);
+        } else if (c == 't') {
+            finp >> x >> y >> z;
+            Point first(x, y, z);
+            finp >> x >> y >> z;
+            Point second(x, y, z);
+            finp >> x >> y >> z;
+            Point third(x, y, z);
+            finp >> x >> y >> z;
+            scene.AddTriangle(first, second, third, x, y, z);
+        } else if (c == 'r') {
+            finp >> x >> y >> z;
+            Point first(x, y, z);
+            finp >> x >> y >> z;
+            Point second(x, y, z);
+            finp >> x >> y >> z;
+            Point third(x, y, z);
+            finp >> x >> y >> z;
+            Point forth(x, y, z);
+            finp >> x >> y >> z;
+            scene.AddRectangle(first, second, third, forth, x, y, z);
+        }
+    }
     scene.Color();
     MyWidget myWidget(&scene);
     myWidget.show();

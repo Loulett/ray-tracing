@@ -26,11 +26,11 @@ private:
     //координаты углов матрицы
     Point leftTop, rightTop, leftBottom, rightBottom;
 
-    //координаты камеры
-    Point camera;
-
     // количество пикселей в высоту и в ширину
     int height, wight;
+
+    //координаты камеры
+    Point camera;
 
     // матрица цветов пикселей
     std::vector<std::vector<QColor> > colors;
