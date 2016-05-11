@@ -12,7 +12,7 @@ void MyWidget::paintEvent(QPaintEvent *) {
     painter.setWindow(0, 0, scene->GetWidth(), scene->GetHeight());
     for (int i = 0; i < scene->GetHeight(); i++) {
         for (int j = 0; j < scene->GetWidth(); j++) {
-            painter.setPen(scene->GetColor(i,j));
+            painter.setPen(scene->GetColor(i, j));
             painter.drawPoint(i, j);
         }
     }

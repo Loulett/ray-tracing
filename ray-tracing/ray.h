@@ -3,8 +3,7 @@
 
 #include "point.h"
 
-class Ray
-{
+class Ray {
 public:
     //Конструктор по двум точкам
     Ray(Point start, Point on): start(start), on(on) {}

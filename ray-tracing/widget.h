@@ -3,8 +3,7 @@
 #include <QWidget>
 #include "scene.h"
 
-class MyWidget: public QWidget
-{
+class MyWidget: public QWidget {
     Q_OBJECT
 public:
     MyWidget(Scene* scene, QWidget* parent = 0);

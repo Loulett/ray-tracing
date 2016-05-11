@@ -7,8 +7,7 @@
 #include "point.h"
 #include "ray.h"
 
-class Object
-{
+class Object {
 public:
     //Проверяет, пересечётся ли данный луч с данным объектом. Возвращает пару.
     //Если bool == true, то в Point лежит точка пересечения
@@ -19,10 +18,10 @@ public:
     //Получает цвет объекта!
     QColor GetColor() { return color; }
 
-    virtual Point GetNorm(Point on) const = 0;
+    virtual Point GetNormal(Point on) const = 0;
 
-    Object(int r, int g, int b): color(r,g,b) {}
-    virtual ~Object() { }
+    Object(int r, int g, int b): color(r, g, b) {}
+    virtual ~Object() {}
 
     Object(const Object& other) = default;
 protected:
@@ -31,12 +30,12 @@ protected:
 
 class Sphere: public Object {
 public:
-    Sphere(Point centre, double radius, int r, int g, int b): Object(r,g,b), centre(centre), radius(radius) {}
+    Sphere(Point centre, double radius, int r, int g, int b): Object(r, g, b), centre(centre), radius(radius) {}
     Sphere(const Sphere& other) = default;
 
     std::pair<bool, double> Intersection(const Ray& r) const override;
 
-    Point GetNorm(Point on) const {return (centre-on)/(centre-on).Length();}
+    Point GetNormal(Point on) const override { return (centre-on)/(centre-on).Length(); }
 
     Point GetCenter() { return centre; }
 private:
@@ -47,12 +46,12 @@ private:
 class Rectangle: public Object {
 public:
     Rectangle(Point leftTop, Point rightTop, Point leftBottom, Point rightBottom, int r, int g, int b):
-           Object(r,g,b), leftTop(leftTop), rightTop(rightTop),
-           leftBottom(leftBottom), rightBottom(rightBottom) {setNormal();}
+           Object(r, g, b), leftTop(leftTop), rightTop(rightTop),
+           leftBottom(leftBottom), rightBottom(rightBottom) { setNormal(); }
 
-    std::pair<bool, double> Intersection(const Ray& r) const;
+    std::pair<bool, double> Intersection(const Ray& r) const override;
 
-    Point GetNorm(Point) const { return normal; }
+    Point GetNormal(Point) const override { return normal; }
 
 private:
     Point leftTop, rightTop, leftBottom, rightBottom;
@@ -63,11 +62,11 @@ private:
 class Triangle: public Object {
 public:
     Triangle(Point first, Point second, Point third, int r, int g, int b):
-             Object(r,g,b), first(first), second(second), third(third) {setNormal();}
+             Object(r, g, b), first(first), second(second), third(third) { setNormal(); }
 
-    std::pair<bool, double> Intersection(const Ray& r) const;
+    std::pair<bool, double> Intersection(const Ray& r) const override;
 
-    Point GetNorm(Point) const { return normal; }
+    Point GetNormal(Point) const override { return normal; }
 
 private:
     Point first, second, third;

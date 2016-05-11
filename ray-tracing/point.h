@@ -1,12 +1,14 @@
+#pragma once
+
 #ifndef POINT_H
 #define POINT_H
-#include <cmath>
 
-class Point
-{
+#include <cmath>
+#include <fstream>
+
+class Point {
 public:
-    Point(double x, double y, double z): x(x), y(y), z(z) {}
-    Point(): x(0), y(0), z(0) {}
+    explicit Point(double x = 0, double y = 0, double z = 0): x(x), y(y), z(z) {}
 
     Point operator + (const Point& other) const {
         return Point(x + other.GetX(), y + other.GetY(), z + other.GetZ());
@@ -19,7 +21,7 @@ public:
     Point operator * (double num) const {
         return Point(x*num, y*num, z*num);
     }
-    Point operator / (int num) const {
+    Point operator / (double num) const {
         return Point(x/num, y/num, z/num);
     }
 
@@ -29,9 +31,11 @@ public:
 
     double Length() const { return std::sqrt(x*x+y*y+z*z); }
 private:
-    double x;
-    double y;
-    double z;
+    double x, y, z;
+
+    friend std::istream& operator >>(std::istream& in, Point& point);
 };
+
+std::istream& operator >>(std::istream& in, Point& point);
 
 #endif // POINT_H

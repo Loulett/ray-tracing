@@ -9,10 +9,9 @@
 #include "monitor.h"
 #include "object.h"
 
-class Scene
-{
+class Scene {
 public:
-    Scene(Monitor monitor, Point light): monitor(monitor), light(light){}
+    Scene(Monitor monitor, Point light): monitor(monitor), light(light) {}
     // заполняет матрицу пикселей цветами
     void Color();
 
@@ -21,6 +20,7 @@ public:
     void AddRectangle(Point first, Point second, Point third, Point forth, int r, int g, int b) {
         objects.emplace_back(new Rectangle(first, second, third, forth, r, g, b));
     }
+
     void AddSphere(Point centre, double radius, int r, int g, int b) {
         objects.emplace_back(new Sphere(centre, radius, r, g, b));
     }
@@ -28,7 +28,7 @@ public:
         objects.emplace_back(new Triangle(first, second, third, r, g, b));
     }
 
-    QColor GetColor(int h, int w) {return monitor.GetColor(h,w);}
+    QColor GetColor(int h, int w) { return monitor.GetColor(h, w); }
 private:
     // камера и матрица пикселей
     Monitor monitor;

@@ -20,6 +20,7 @@ TEMPLATE = app
 #QMAKE_CXXFLAGS += --version
 QMAKE_CXXFLAGS += -std=gnu++14 -Wall -Wextra
 
+
 SOURCES += main.cpp monitor.cpp point.cpp object.cpp ray.cpp scene.cpp widget.cpp
 
 HEADERS  += monitor.h point.h object.h ray.h scene.h widget.h

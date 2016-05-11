@@ -4,10 +4,14 @@
 
 double dot(Point a, Point b);
 
-int PLUS_INF = 1000000;
+constexpr int PLUS_INF = 1000000;
 
-QColor lerp(double l, const QColor& color, double k) {
-    return QColor(color.red()*(k/(0.5*l*l)), color.green()*(k/(0.5*l*l)), color.blue()*(k/(0.5*l*l)));
+QColor lerp(const QColor& color, double k) {
+    return QColor(color.red() * k, color.green() * k, color.blue() * k);
+}
+
+double attenuation(double l) {
+    return 1.;
 }
 
 void Scene::Color() {
@@ -23,9 +27,9 @@ void Scene::Color() {
                     Point intersect = r.GetT(t);
                     Ray l(light, intersect);
                     Point norm = l.GetVector() / (l.GetVector().Length());
-                    monitor.SetColor(i, j, lerp(l.GetVector().Length(), k->GetColor(), std::max(0.0,
-                                                                        dot(norm,
-                                                                             k->GetNorm(intersect)))));
+                    monitor.SetColor(i, j, lerp(k->GetColor(),
+                                                attenuation(l.GetVector().Length())
+                                                * std::max(0.0, dot(norm, k->GetNormal(intersect)))));
                 }
             }
         }
