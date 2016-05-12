@@ -1,7 +1,7 @@
 #include "monitor.h"
 
 Ray Monitor::GetRay(int h, int w) {
-    Point vectorWidth = (rightTop - leftTop)/weight, vectorHeight = (leftBottom - leftTop)/height;
+    Point vectorWidth = (rightTop - leftTop)/width, vectorHeight = (leftBottom - leftTop)/height;
     Point y = vectorHeight * h;
     Point x = leftTop + y;
     y = vectorWidth * w;

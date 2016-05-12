@@ -21,7 +21,7 @@ public:
     virtual Point GetNormal(Point on) const = 0;
 
     Object(int r, int g, int b): color(r, g, b) {}
-    virtual ~Object() {}
+    virtual ~Object();
 
     Object(const Object& other) = default;
 protected:

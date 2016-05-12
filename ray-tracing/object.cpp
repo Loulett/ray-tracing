@@ -77,3 +77,6 @@ void Rectangle::setNormal() {
     normal = cross(leftBottom - leftTop, rightTop - leftTop);
     normal = normal / normal.Length();
 }
+
+
+Object::~Object() {}
