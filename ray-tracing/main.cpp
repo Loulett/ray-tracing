@@ -13,8 +13,6 @@
 #include "scene.h"
 #include "point.h"
 
-
-
 int main(int argc, char *argv[]) {
     QApplication a(argc, argv);
     std::ifstream finp("../ray-tracing/input.txt");

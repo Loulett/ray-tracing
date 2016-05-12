@@ -9,7 +9,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${Qt5Widgets_EXECUTABLE_COMPILE_FLAGS}")
 if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Weverything -Reverything -Wno-shadow \
                          -Wno-global-constructors -Wno-c++98-compat -Wno-c++98-compat-pedantic \
-                         -Wno-dollar-in-identifier-extension -Wno-missing-prototypes")
+                         -Wno-dollar-in-identifier-extension -Wno-missing-prototypes -g")
 endif()
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)

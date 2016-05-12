@@ -15,32 +15,31 @@ double attenuation(double l) {
 }
 
 void Scene::Color() {
-    int t = 0;
     for (int i = 0; i < monitor.GetHeight(); i += 1) {
-        for (int j = 0; j < monitor.GetWight(); j += 1) {
-            t = PLUS_INF;
+        for (int j = 0; j < monitor.GetWigth(); j += 1) {
+            double t = PLUS_INF;
             for (auto&& k : objects) {
                 Ray r = monitor.GetRay(i, j);
-                std::pair<bool, float> res = k->Intersection(r);
-                if (res.first && res.second < t) {
-                    t = res.second;
-                    Point intersect = r.GetT(t);
+                auto intersection = k->Intersection(r);
+                if (intersection.happened && intersection.t < t) {
+                    t = intersection.t;
+                    Point intersect = r.GetT(intersection.t);
                     Ray l(light, intersect);
-                    bool inter = false;
+                    bool occluded = false;
                     for (auto&& q: objects) {
-                        std::pair<bool, float> shade = q->Intersection(l);
-                        if(shade.first && shade.second < 1) {
-                            monitor.SetColor(i, j, QColor(128,128,128));
-                            inter = true;
-                            break;
+                        if(k != q) {
+                            auto shade = q->Intersection(l);
+                            if (shade.happened && shade.t < 1.) {
+                                occluded = true;
+                                break;
+                            }
                         }
                     }
-                    if (!inter) {
-                        Point norm = l.GetVector() / (l.GetVector().Length());
-                        monitor.SetColor(i, j, lerp(k->GetColor(),
-                                                attenuation(l.GetVector().Length())
-                                                * std::max(0.0, dot(norm, k->GetNormal(intersect)))));
-                    }
+
+                    double shaded = occluded ? 0.2 : (std::max(dot(l.GetVector().normalized(),
+                                                                   k->GetNormal(intersect)), .0)
+                                                      * attenuation(l.GetVector().Length()));
+                    monitor.SetColor(i, j, lerp(k->GetColor(), shaded));
                 }
             }
         }

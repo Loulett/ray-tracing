@@ -1,10 +1,17 @@
-#pragma once
-
 #ifndef POINT_H
 #define POINT_H
 
 #include <cmath>
 #include <fstream>
+
+#include <iostream>
+#define $(x) (debugOut(x, #x))
+template <typename T>
+T debugOut(T var, const char* name)
+{
+    std::cerr << name << ": " << var << '\n';
+    return var;
+}
 
 class Point {
 public:
@@ -23,6 +30,10 @@ public:
     }
     Point operator / (double num) const {
         return Point(x/num, y/num, z/num);
+    }
+
+    Point normalized() const {
+        return *this / Length();
     }
 
     double GetX() const { return x; }

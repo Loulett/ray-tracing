@@ -16,7 +16,7 @@ public:
     void Color();
 
     int GetHeight() { return monitor.GetHeight(); }
-    int GetWidth() { return monitor.GetWight(); }
+    int GetWidth() { return monitor.GetWigth(); }
     void AddRectangle(Point first, Point second, Point third, Point forth, int r, int g, int b) {
         objects.emplace_back(new Rectangle(first, second, third, forth, r, g, b));
     }

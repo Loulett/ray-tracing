@@ -19,7 +19,7 @@ public:
     void SetColor(int h, int w, QColor color);
 
     int GetHeight() { return height; }
-    int GetWight() { return width; }
+    int GetWigth() { return width; }
     QColor GetColor(int h, int w) { return colors[h][w]; }
 private:
     //координаты углов матрицы
