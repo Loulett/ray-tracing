@@ -59,6 +59,7 @@ public:
     IntersectionResult Intersection(const Ray& r) const override;
 
     Point GetNormal(Point) const override { return normal; }
+    void SetNormal(Point norm) const {normal = norm;}
 
 private:
     Point leftTop, rightTop, leftBottom, rightBottom;
@@ -70,10 +71,13 @@ class Triangle: public Object {
 public:
     Triangle(Point first, Point second, Point third, int r, int g, int b):
              Object(r, g, b), first(first), second(second), third(third) { setNormal(); }
+    Triangle(Point first, Point second, Point third, Point normal, int r, int g, int b):
+             Object(r, g, b), first(first), second(second), third(third) { SetNormal(normal); }
 
     IntersectionResult Intersection(const Ray& r) const override;
 
     Point GetNormal(Point) const override { return normal; }
+    void SetNormal(Point norm) const {normal = norm;}
 
 private:
     Point first, second, third;

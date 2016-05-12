@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QPainter>
 #include <fstream>
+#include <string>
 #include <vector>
 #include <memory>
 
@@ -16,7 +17,6 @@
 int main(int argc, char *argv[]) {
     QApplication a(argc, argv);
     std::ifstream finp("../ray-tracing/input.txt");
-    double x = 0, y = 0, z = 0, r = 0;
     Point camera, leftTop, rightTop, leftBottom, rightBottom;
     finp >> camera >> leftTop >> rightTop >> leftBottom >> rightBottom;
     int h = 0, w = 0;
@@ -27,7 +27,7 @@ int main(int argc, char *argv[]) {
 
     Scene scene(monitor, light);
 
-    int n = 0;
+    /*int n = 0;
     char c;
     finp >> n;
 
@@ -60,6 +60,25 @@ int main(int argc, char *argv[]) {
             finp >> x >> y >> z;
             scene.AddRectangle(first, second, third, forth, x, y, z);
         }
+    }*/
+
+    std::string toread;
+    Point normal, first, second, third;
+    finp >> toread;
+    while (toread != "endsolid") {
+        if (toread == "facet") {
+            finp >> toread;
+            finp >> normal;
+        }
+        if (toread == "outer") {
+            finp >> toread;
+            finp >> toread;
+            finp >> first >> toread;
+            finp >> second >> toread;
+            finp >> third;
+            scene.AddTriangle(first, second, third, normal, 0, 0, 255);
+        }
+        finp >> toread;
     }
     scene.Color();
     MyWidget myWidget(&scene);

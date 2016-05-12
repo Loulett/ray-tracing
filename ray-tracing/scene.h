@@ -27,6 +27,9 @@ public:
     void AddTriangle(Point first, Point second, Point third, int r, int g, int b) {
         objects.emplace_back(new Triangle(first, second, third, r, g, b));
     }
+    void AddTriangle(Point first, Point second, Point third, Point normal, int r, int g, int b) {
+        objects.emplace_back(new Triangle(first, second, third, normal, r, g, b));
+    }
 
     QColor GetColor(int h, int w) { return monitor.GetColor(h, w); }
 private:
