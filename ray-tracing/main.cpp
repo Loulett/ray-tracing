@@ -65,6 +65,7 @@ int main(int argc, char *argv[]) {
     }
     scene.Color();
     MyWidget myWidget(&scene);
+    myWidget.resize(w, h);
     myWidget.show();
 
     return a.exec();

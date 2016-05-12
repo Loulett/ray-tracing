@@ -26,10 +26,21 @@ void Scene::Color() {
                     t = res.second;
                     Point intersect = r.GetT(t);
                     Ray l(light, intersect);
-                    Point norm = l.GetVector() / (l.GetVector().Length());
-                    monitor.SetColor(i, j, lerp(k->GetColor(),
+                    bool inter = false;
+                    for (auto&& q: objects) {
+                        std::pair<bool, float> shade = q->Intersection(l);
+                        if(shade.first && shade.second < 1) {
+                            monitor.SetColor(i, j, QColor(128,128,128));
+                            inter = true;
+                            break;
+                        }
+                    }
+                    if (!inter) {
+                        Point norm = l.GetVector() / (l.GetVector().Length());
+                        monitor.SetColor(i, j, lerp(k->GetColor(),
                                                 attenuation(l.GetVector().Length())
                                                 * std::max(0.0, dot(norm, k->GetNormal(intersect)))));
+                    }
                 }
             }
         }

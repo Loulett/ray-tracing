@@ -74,7 +74,7 @@ void Triangle::setNormal() {
 }
 
 void Rectangle::setNormal() {
-    normal = cross(leftBottom - leftTop, rightTop - leftTop);
+    normal = cross(rightTop - leftTop, leftBottom - leftTop);
     normal = normal / normal.Length();
 }
 
